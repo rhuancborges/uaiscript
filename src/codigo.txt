@@ -1,0 +1,14 @@
+tero n bota tero(input());
+tero t1 bota 1;
+tero t2 bota 1;
+tero t3;
+tero soma bota 2;
+
+pra (i bota 3; i <= n; i++){
+    t3 bota t1 + t2;
+    soma bota soma + t3;
+    t1 bota t2;
+    t2 bota t3;
+}
+
+print(soma);
