@@ -1,4 +1,8 @@
-trem palavra bota "Um número decimal qualquer: ";
-froti 4e 44,6;
+void retornaNum(){
+    vorta 44.7;
+}
+
+froti 4e 44.6;
 print(palavra);
 print(4e);
+print(retornaNum());
