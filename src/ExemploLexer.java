@@ -12,6 +12,8 @@ public class ExemploLexer{
             while(!lexer._hitEOF){
                 token = lexer.nextToken();
                 System.out.println("Token: " + token.toString());
+                System.out.println("   Lexema: " + token.getText());
+                System.out.println("   Classe: " + lexer.getVocabulary().getDisplayName(token.getType()));
             }
         }catch(IOException e){
             e.printStackTrace();

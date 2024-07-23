@@ -1,7 +1,8 @@
-void retornaNum(){
+nadanao retornaNum(){
     vorta 44.7;
 }
 
+trem palavra bota "Um número qualquer: ";
 froti 4e 44.6;
 print(palavra);
 print(4e);
