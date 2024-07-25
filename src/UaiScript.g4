@@ -13,12 +13,12 @@ AP: '(';
 FP: ')';
 AC: '{';
 FC: '}';
-STRING: '"'(LETRA|DIGITO|' ')*'"';
+STRING: '"'(~["\r\n])*'"';
 ID: LETRA(DIGITO|LETRA)*;
 NUM: DIGITO+('.'DIGITO+)?;
 OP_ARITM: '+'|'-'|'*'|'/'|'%';
 COMP: '='|'>'|'<'|'>='|'<=';
-WS: [ \r\t\n]* -> skip ;
+WS: [ \r\t\n]* -> skip;
 DELIM: ';';
 Erro: .;
 
