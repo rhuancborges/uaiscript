@@ -1,4 +1,4 @@
 trem palavra bota "Um número decimal qualquer: ";
 froti 4e 44,6;
 print(palavra);
-print(4e);
+print(número);

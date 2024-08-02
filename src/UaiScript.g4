@@ -1,7 +1,7 @@
 grammar UaiScript;
 
 inicio: (funcoes)* main EOF;
-funcoes: decl_func AP ((decl_var ',')|decl_var)* FP AC main (RETORNO operacao DELIM)? FC;
+funcoes: decl_func AP ((decl_var VIRG)|decl_var)* FP AC main (RETORNO operacao DELIM)? FC;
 main: ((atrib | acao | funcao) DELIM | condicao | laco)*;
 decl_func: (TIPO|VOID) ID;
 decl_var: TIPO ID;
@@ -10,7 +10,7 @@ acao: 'input' AP STR? FP | 'print' AP (operacao|ID) FP;
 operacao: operando operando_cauda?;
 operando: NUM|ID;
 operando_cauda: OP_ARITM operando (operando_cauda)*;
-funcao: (decl_var|ID) ATR ID AP ((operacao ',')|operacao)* FP;
+funcao: (decl_var|ID) ATR ID AP ((operacao VIRG)|operacao)* FP;
 condicao: IF AP (expressao) FP AC main FC (ELSE (AC main FC|condicao))?;
 laco: WHILE (expressao) AC main FC
       | DO AC main FC WHILE AP (expressao) FP DELIM
@@ -42,6 +42,7 @@ OP_ARITM: '+'|'-'|'*'|'/'|'%';
 COMP: '='|'>'|'<'|'>='|'<=';
 WS: [ \r\t\n]* -> skip;
 DELIM: ';';
-Erro: .;
+VIRG: ',';
+
 
 
