@@ -2,19 +2,20 @@ grammar UaiScript;
 
 inicio: (funcoes)* main EOF;
 funcoes: decl_func AP ((decl_var VIRG)|decl_var)* FP AC main (RETORNO operacao DELIM)? FC;
-main: ((atrib | acao | funcao) DELIM | condicao | laco)*;
+main: ((atrib | acao | funcao) DELIM | condicao | laco)+;
 decl_func: (TIPO|VOID) ID;
 decl_var: TIPO ID;
 atrib: decl_var (ATR (casting|operacao|STR))? | ID ATR (casting|STR|operacao);
-acao: 'input' AP STR? FP | 'print' AP (operacao|ID) FP;
+acao: 'input' AP STR? FP | 'print' AP operacao FP;
 operacao: operando operando_cauda?;
 operando: NUM|ID;
 operando_cauda: OP_ARITM operando (operando_cauda)*;
-funcao: (decl_var|ID) ATR ID AP ((operacao VIRG)|operacao)* FP;
-condicao: IF AP (expressao) FP AC main FC (ELSE (AC main FC|condicao))?;
+funcao: ((decl_var|ID) ATR)? ID AP ((operacao VIRG)|operacao)* FP;
+condicao: IF AP (expressao) FP AC main FC condicaoElse?;
+condicaoElse: ELSE (AC main FC|condicao);
 laco: WHILE (expressao) AC main FC
       | DO AC main FC WHILE AP (expressao) FP DELIM
-      | FOR AP (ID ATR (NUM|ID) DELIM ID COMP (NUM|ID) DELIM ID ('++'|'--')) FP AC main FC;
+      | FOR AP (atrib DELIM ID COMP operando DELIM ID ('++'|'--')) FP AC main FC;
 expressao: operacao COMP (NUM|ID|funcao) (OP_LOG expressao)*;
 casting: TIPO AP (operacao|acao) FP;
 
@@ -39,7 +40,7 @@ STR: '"'(~["\r\n])*'"';
 ID: LETRA(DIGITO|LETRA)*;
 NUM: DIGITO+('.'DIGITO+)?;
 OP_ARITM: '+'|'-'|'*'|'/'|'%';
-COMP: '='|'>'|'<'|'>='|'<=';
+COMP: '='|'>'|'<'|'>='|'<='|'!=';
 WS: [ \r\t\n]* -> skip;
 DELIM: ';';
 VIRG: ',';

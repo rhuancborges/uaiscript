@@ -1,4 +1,5 @@
 import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import java.io.IOException;
 
@@ -11,11 +12,15 @@ public class CompiladorUaiScript{
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             UaiScriptParser parser = new UaiScriptParser(tokens);
 
+
             UaiScriptParser.InicioContext arvore = parser.inicio();
 
             System.out.println(arvore.toStringTree());
+            ParseTreeWalker walker = new ParseTreeWalker();
+            Listener listener = new Listener();
+            walker.walk(listener, arvore);  // Executar a análise semântica
 
-        }catch(IOException e){
+        }catch(IOException e) {
             e.printStackTrace();
         }
     }

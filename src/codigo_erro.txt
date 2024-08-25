@@ -1,4 +1,9 @@
 trem palavra bota "Um número decimal qualquer: ";
-froti 4e 44,6;
+tero x 44.6;
+tero x bota 44;
+pra (tero i bota 3; i <= n; i++){
+    tero y bota 2;
+}
+y bota 4;
 print(palavra);
 print(número);
