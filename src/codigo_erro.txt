@@ -1,11 +1,15 @@
-tero n;
+í b(tero a){
+   vorta a+a;
+}
+tero n bota 2;
 serasse (n < 1){
-    tero x;
-    serasse (x<2){
-        x bota 4;
-    }
+   tero x;
+   serasse (x<2){
+       x bota 4;
+   }
 } nenada serasse(n < 10){
-    print(20);
+   x bota 5;
+   print(20);
 } nenada {
-    print(100);
+   print(100);
 }
