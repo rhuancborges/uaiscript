@@ -54,7 +54,7 @@ public class Listener extends UaiScriptBaseListener {
         escopos.pop();
     }
 
-
+    //
     @Override
     public void enterCondicao(UaiScriptParser.CondicaoContext ctx){
         escopos.push(new HashMap<>());
@@ -67,7 +67,9 @@ public class Listener extends UaiScriptBaseListener {
 
     @Override
     public void enterCondicaoElse(UaiScriptParser.CondicaoElseContext ctx){
-        escopos.push(new HashMap<>());
+        if(ctx.condicao() == null) {
+            escopos.push(new HashMap<>());
+        }
     }
 
     @Override

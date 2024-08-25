@@ -1,9 +1,11 @@
-trem palavra bota "Um número decimal qualquer: ";
-tero x 44.6;
-tero x bota 44;
-pra (tero i bota 3; i <= n; i++){
-    tero y bota 2;
+tero n;
+serasse (n < 1){
+    tero x;
+    serasse (x<2){
+        x bota 4;
+    }
+} nenada serasse(n < 10){
+    print(20);
+} nenada {
+    print(100);
 }
-y bota 4;
-print(palavra);
-print(número);
