@@ -82,7 +82,7 @@ public class Listener extends UaiScriptBaseListener {
             varType = getVariableType(varName);
 
             if (varType == null) {
-                System.err.println("Erro semântico: Variável '" + varName + "' não foi declarada no escopo atual.");
+                System.err.println("Erro semântico: Variável '" + varName + "' não foi declarada.");
                 return;
             }
         } else if (ctx.decl_var() != null) {
@@ -90,10 +90,10 @@ public class Listener extends UaiScriptBaseListener {
             varName = ctx.decl_var().ID().getText();
             varType = ctx.decl_var().TIPO().getText();
 
-            // Adiciona a variável ao escopo atual
+            // Adiciona a variável (se não declarada) ao escopo atual
             Map<String, String> escopoAtual = escopos.peek();
-            if (escopoAtual.containsKey(varName)) {
-                System.err.println("Erro semântico: Variável '" + varName + "' já foi declarada no escopo atual.");
+            if (declarada(varName)){
+                System.err.println("Erro semântico: Variável '" + varName + "' já foi declarada");
             }
             escopoAtual.put(varName, varType);
         }
